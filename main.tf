@@ -1,9 +1,9 @@
 locals {
   space_count = 45
   spaces = { for i in range(1, local.space_count + 1) :
-    i => {
-      name        = "space-${i}"
-      parent_id   = i == 1 ? "root" : spacelift_space["${i - 1}"].id
+    format("space-%d", i) => {
+      name        = format("space-%d", i)
+      parent_id   = i == 1 ? "root" : spacelift_space[format("space-%d", i - 1)].id
       description = "This is space number ${i}."
     }
   }
