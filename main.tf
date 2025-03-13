@@ -8,5 +8,7 @@ resource "spacelift_space" "spaces" {
   description      = "This is space number ${count.index + 1}."
   parent_space_id  = count.index == 0 ? "root" : spacelift_space.spaces[count.index - 1].id
   inherit_entities = true
-  depends_on       = count.index == 0 ? [] : [spacelift_space.spaces[count.index - 1]]
+
+  # Ensure Terraform creates spaces in order
+  depends_on = count.index == 0 ? [] : [spacelift_space.spaces[count.index - 1]]
 }
