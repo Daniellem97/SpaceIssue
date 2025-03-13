@@ -6,6 +6,7 @@ resource "spacelift_space" "spaces" {
   count            = var.space_count
   name             = "space-${count.index + 1}"
   description      = "This is space number ${count.index + 1}."
-  parent_space_id  = count.index == 0 ? "root" : element(spacelift_space.spaces[*].id, count.index - 1)
+  parent_space_id  = count.index == 0 ? "root" : spacelift_space.spaces[count.index - 1].id
   inherit_entities = true
+  depends_on       = count.index == 0 ? [] : [spacelift_space.spaces[count.index - 1]]
 }
