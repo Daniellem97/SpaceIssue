@@ -4,58 +4,58 @@ resource "spacelift_space" "first" {
   parent_space_id  = "root"
 }
 
-resource "spacelift_space" "first_security" {
+resource "spacelift_space" "second" {
   depends_on       = [spacelift_space.first]
   inherit_entities = true
-  name             = "first_security"
+  name             = "second"
   parent_space_id  = spacelift_space.first.id
 }
 
-resource "spacelift_space" "first_security_audit" {
-  depends_on       = [spacelift_space.first_security]
+resource "spacelift_space" "second_space" {
+  depends_on       = [spacelift_space.second]
   inherit_entities = true
-  name             = "first-security-audit"
-  parent_space_id  = spacelift_space.first_security.id
+  name             = "second-test-space"
+  parent_space_id  = spacelift_space.second.id
 }
 
-resource "spacelift_space" "first_security_logs" {
-  depends_on       = [spacelift_space.first_security]
+resource "spacelift_space" "third_space" {
+  depends_on       = [spacelift_space.second]
   inherit_entities = true
-  name             = "first-security-logs"
-  parent_space_id  = spacelift_space.first_security.id
+  name             = "third_space"
+  parent_space_id  = spacelift_space.second.id
 }
 
-resource "spacelift_space" "first_shared" {
+resource "spacelift_space" "fourth_space" {
   depends_on       = [spacelift_space.first]
   inherit_entities = true
-  name             = "shared"
+  name             = "fourth"
   parent_space_id  = spacelift_space.first.id
 }
 
-resource "spacelift_space" "first_shared_iam" {
-  depends_on       = [spacelift_space.first_shared]
+resource "spacelift_space" "fifth_space" {
+  depends_on       = [spacelift_space.fourth_space]
   inherit_entities = true
-  name             = "first-shared-iam"
-  parent_space_id  = spacelift_space.first_shared.id
+  name             = "fifth_space"
+  parent_space_id  = spacelift_space.fourth_space.id
 }
 
-resource "spacelift_space" "first_shared_monitoring" {
-  depends_on       = [spacelift_space.first_shared]
+resource "spacelift_space" "sixth_space" {
+  depends_on       = [spacelift_space.fourth_space]
   inherit_entities = true
-  name             = "first-shared-monitoring"
-  parent_space_id  = spacelift_space.first_shared.id
+  name             = "sixth_space"
+  parent_space_id  = spacelift_space.fourth_space.id
 }
 
-resource "spacelift_space" "first_shared_resources" {
-  depends_on       = [spacelift_space.first_shared]
+resource "spacelift_space" "seventh_space" {
+  depends_on       = [spacelift_space.fourth_space]
   inherit_entities = true
-  name             = "first-shared-resources"
-  parent_space_id  = spacelift_space.first_shared.id
+  name             = "seventh_space"
+  parent_space_id  = spacelift_space.fourth_space.id
 }
 
-resource "spacelift_space" "first_shared_tgw" {
-  depends_on       = [spacelift_space.first_shared]
+resource "spacelift_space" "eight_space" {
+  depends_on       = [spacelift_space.fourth_space]
   inherit_entities = true
-  name             = "first-shared-tgw"
-  parent_space_id  = spacelift_space.first_shared.id
+  name             = "eight_space"
+  parent_space_id  = spacelift_space.fourth_space.id
 }
