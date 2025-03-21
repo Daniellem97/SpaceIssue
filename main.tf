@@ -1,7 +1,7 @@
 resource "spacelift_space" "first" {
   inherit_entities = true
   name             = "first"
-  parent_space_id  = "root"
+  parent_space_id  = "danielle-01HTFDVQWP4BEXJ9YEV8WB59BV"
 }
 
 resource "spacelift_space" "second" {
